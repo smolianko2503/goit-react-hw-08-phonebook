@@ -1,20 +1,23 @@
 import { List, ButtonDelete } from './ContactItem.styled';
 import PropTypes from 'prop-types';
 
-import { useDispatch } from 'react-redux';
-import { deleteContacts } from 'redux/contactsSlice';
+import { getIsLoading } from 'redux/contacts/selectors';
+import { deleteContact } from 'redux/contacts/operations';
+import { useSelector, useDispatch } from 'react-redux';
 
 const ContactItem = ({ item: { name, number, id } }) => {
   
+  const isLoading = useSelector(getIsLoading);
   const dispatch = useDispatch();
-  
+
   return (
     <div>
       <List>
         {name}: {number}
         <ButtonDelete
           type="button"
-          onClick={() => dispatch(deleteContacts(id))}
+          disabled={isLoading}
+          onClick={() => dispatch(deleteContact(id))}
         >
           Delete
         </ButtonDelete>
@@ -22,7 +25,6 @@ const ContactItem = ({ item: { name, number, id } }) => {
     </div>
   );
 };
-
 
 
 export default ContactItem;

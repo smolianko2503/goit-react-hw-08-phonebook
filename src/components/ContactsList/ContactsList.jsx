@@ -1,16 +1,17 @@
 import ContactItem from '../ContactItem/ContactItem';
 import { ContactList } from './ContactsList.styled';
 
-import { getContacts, getFilter } from 'redux/selectors';
+import { getContacts, getFilter } from 'redux/contacts/selectors';
 import { useSelector } from 'react-redux';
 
-const ContactsList = () => {
+export const ContactsList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
 
   return (
     <div>
       <ContactList>
+        {contacts.length === 0 && <p>No contacts added...</p>}
         {contacts
           .filter(contact =>
             contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -23,6 +24,4 @@ const ContactsList = () => {
   );
 };
 
-
 export default ContactsList;
-

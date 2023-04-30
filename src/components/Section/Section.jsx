@@ -9,7 +9,6 @@ const Section = ({ title }) => {
   );
 };
 
-
 export default Section;
 
 Section.propTypes = {

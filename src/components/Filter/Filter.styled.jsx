@@ -1,5 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FilterInput = styled.input`
-width: 100%;
-`
+  width: 100%;
+`;

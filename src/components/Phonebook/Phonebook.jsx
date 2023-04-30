@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 import { FormLabel, Form, ErrorMessage, Button } from './Phonebook.styled';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
 
 const PhonebookSchema = Yup.object().shape({
   name: Yup.string()
@@ -33,7 +33,7 @@ const Phonebook = () => {
     ) {
       alert(`${name} is already in contacts`);
     } else {
-      dispatch(addContacts(name, number));
+      dispatch(addContact({ name, number }));
       actions.resetForm();
     }
   };
@@ -67,6 +67,4 @@ const Phonebook = () => {
 };
 
 
-export default Phonebook
-
-
+export default Phonebook;
